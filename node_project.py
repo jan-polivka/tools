@@ -22,7 +22,7 @@ def addScripts():
     loaded_json = None
     with open("package.json", "r") as package_json:
         loaded_json = json.load(package_json)
-        
+
     with open("package.json", "w") as package_json:
         scripts = {
             "test": "jest unit",
@@ -32,8 +32,15 @@ def addScripts():
             "build": "tsc",
         }
         loaded_json["scripts"] = scripts
-        print(loaded_json)
         json.dump(loaded_json, package_json)
+
+def setupTsConfig():
+    with open("tsconfig.json", "w") as tsconfig_json:
+        tsconfig = {
+            "compilerOptions": {"outDir": "build/src"},
+            "exclude": ["**/*.test.ts"],
+        }
+        json.dump(tsconfig, tsconfig_json)
 
 
 if __name__ == "__main__":
