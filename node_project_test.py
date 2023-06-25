@@ -45,7 +45,7 @@ class NodeProjectTest(unittest.TestCase):
         with open('tsconfig.json', 'r') as tsconfig_json:
             result = json.load(tsconfig_json)
             keys = result.keys()
-            self.assertTrue("compileOptions" in keys)
+            self.assertTrue("compilerOptions" in keys)
             self.assertTrue("exclude" in keys)
             
         
