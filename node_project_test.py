@@ -39,5 +39,13 @@ class NodeProjectTest(unittest.TestCase):
             self.assertTrue("scripts" in keys)
             self.assertTrue("integration" in result["scripts"])
 
-    # def testSetupTsConfig(self):
+    def testSetupTsConfig(self):
+        node_project.setupTsConfig()
+
+        with open('tsconfig.json', 'r') as tsconfig_json:
+            result = json.load(tsconfig_json)
+            keys = result.keys()
+            self.assertTrue("compileOptions" in keys)
+            self.assertTrue("exclude" in keys)
+            
         
