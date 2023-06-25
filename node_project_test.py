@@ -48,4 +48,13 @@ class NodeProjectTest(unittest.TestCase):
             self.assertTrue("compilerOptions" in keys)
             self.assertTrue("exclude" in keys)
             
+    def testSetupGitIgnore(self):
+        node_project.setupGitIgnore()
+
+        with open('.gitignore', 'r') as gitignore:
+            result = gitignore.read()
+
+            self.assertNotEqual(-1, result.find("node_modules"))
+            self.assertNotEqual(-1, result.find("build"))
+            
         

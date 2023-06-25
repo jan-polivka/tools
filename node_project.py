@@ -41,6 +41,14 @@ def setupTsConfig():
             "exclude": ["**/*.test.ts"],
         }
         json.dump(tsconfig, tsconfig_json)
+        
+def setupGitIgnore():
+    ignored_list = ["node_modules", "build"]
+    with open('.gitignore', 'w') as gitignore:
+        ignored_string =""
+        for ignored in ignored_list:
+            ignored_string = ignored_string + ignored + "\n"
+        gitignore.write(ignored_string)
 
 
 if __name__ == "__main__":
