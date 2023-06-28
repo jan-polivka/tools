@@ -64,4 +64,8 @@ module.exports = {
 
 
 if __name__ == "__main__":
-    execute()
+    addDevDependencies()
+    addScripts()
+    setupTsConfig()
+    setupGitIgnore()
+    setupJestConfig()
