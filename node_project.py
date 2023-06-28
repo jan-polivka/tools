@@ -34,6 +34,7 @@ def addScripts():
         loaded_json["scripts"] = scripts
         json.dump(loaded_json, package_json)
 
+
 def setupTsConfig():
     with open("tsconfig.json", "w") as tsconfig_json:
         tsconfig = {
@@ -41,14 +42,25 @@ def setupTsConfig():
             "exclude": ["**/*.test.ts"],
         }
         json.dump(tsconfig, tsconfig_json)
-        
+
+
 def setupGitIgnore():
     ignored_list = ["node_modules", "build"]
-    with open('.gitignore', 'w') as gitignore:
-        ignored_string =""
+    with open(".gitignore", "w") as gitignore:
+        ignored_string = ""
         for ignored in ignored_list:
             ignored_string = ignored_string + ignored + "\n"
         gitignore.write(ignored_string)
+
+
+def setupJestConfig():
+    config = """/** @type {import('ts-jest').JestConfigWithTsJest} */
+module.exports = {
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+};"""
+    with open("jest.config.js", "w") as jestConfig:
+        jestConfig.write(config)
 
 
 if __name__ == "__main__":
