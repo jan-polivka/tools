@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func main() {
@@ -33,4 +34,47 @@ func addScripts() {
 	packageJson["scripts"] = scripts
 	marshaledPackageJson, _ := json.Marshal(packageJson)
 	os.WriteFile("package.json", marshaledPackageJson, 0644)
+}
+
+func setupTsConfig() {
+
+	compileOptions := map[string]string{
+		"outDir": "build/src",
+	}
+
+	exclude := []string{"**/*.test.ts"}
+
+	tsConfigJson := make(map[string]interface{})
+
+	tsConfigJson["compileOptions"] = compileOptions
+
+	tsConfigJson["exclude"] = exclude
+
+	marshaledTsConfigJson, _ := json.Marshal(tsConfigJson)
+
+	os.WriteFile("tsconfig.json", marshaledTsConfigJson, 0644)
+
+}
+
+func setupGitIgnore() {
+	ignored := []string{"node_modules", "build"}
+
+	var sb strings.Builder
+
+	for _, element := range ignored {
+		sb.WriteString(element)
+		sb.WriteString("\n")
+	}
+
+	os.WriteFile(".gitignore", []byte(sb.String()), 0644)
+}
+
+func setupJestConfig() {
+
+	jestConfig := `/** @type {import('ts-jest').JestConfigWithTsJest} */
+module.exports = {
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+};`
+	os.WriteFile("jest.config.js", []byte(jestConfig), 0644)
 }

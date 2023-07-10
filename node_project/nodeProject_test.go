@@ -48,6 +48,42 @@ func TestAddScripts(t *testing.T) {
 	destroyTestDirectory()
 }
 
+func TestSetupTsCOnfig(t *testing.T) {
+	setupTestDirectory()
+
+	setupTsConfig()
+
+	dat, _ := os.ReadFile("tsconfig.json")
+
+	assert.True(t, strings.Contains(string(dat), "build/src"))
+
+	destroyTestDirectory()
+}
+
+func TestSetupGitgnore(t *testing.T) {
+	setupTestDirectory()
+
+	setupGitIgnore()
+
+	dat, _ := os.ReadFile(".gitignore")
+
+	assert.True(t, strings.Contains(string(dat), "node_modules"))
+
+	destroyTestDirectory()
+}
+
+func TestSetupJestConfig(t *testing.T) {
+	setupTestDirectory()
+
+	setupJestConfig()
+
+	dat, _ := os.ReadFile("jest.config.js")
+
+	assert.True(t, strings.Contains(string(dat), "preset"))
+
+	destroyTestDirectory()
+}
+
 func setupTestDirectory() {
 	testDirectory := "testDirectory"
 	os.Mkdir(testDirectory, 0755)
