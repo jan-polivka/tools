@@ -1,15 +1,20 @@
-package nodeProject
+package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 )
 
 func main() {
-	fmt.Println("Hello, World")
+	workingDirectory := os.Args[1]
+	initWorkingDirectory(workingDirectory)
+	addDevDependencies()
+	addScripts()
+	setupGitIgnore()
+	setupJestConfig()
+	setupTsConfig()
 }
 
 func initWorkingDirectory(dirName string) {

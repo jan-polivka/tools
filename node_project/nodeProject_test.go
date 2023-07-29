@@ -1,4 +1,4 @@
-package nodeProject
+package main
 
 import (
 	"encoding/json"
