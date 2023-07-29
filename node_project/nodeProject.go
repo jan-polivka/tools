@@ -12,6 +12,11 @@ func main() {
 	fmt.Println("Hello, World")
 }
 
+func initWorkingDirectory(dirName string) {
+	os.Mkdir(dirName, 0755)
+	os.Chdir(dirName)
+}
+
 func addDevDependencies() {
 	dependencies := []string{"@jest/globals", "jest", "nodemon", "ts-jest", "typescript"}
 	for _, element := range dependencies {

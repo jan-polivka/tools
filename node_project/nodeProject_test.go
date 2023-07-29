@@ -9,6 +9,16 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestInitWorkingDirectory(t *testing.T) {
+
+	testDir := "testDirectory"
+
+	initWorkingDirectory(testDir)
+	cwd, _ := os.Getwd()
+	assert.Contains(t, cwd, testDir)
+	destroyTestDirectory()
+}
+
 func TestAddDevDependencies(t *testing.T) {
 
 	t.Skip("Takes too long")
